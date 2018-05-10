@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+#root,.contain,.App,.ant-layout{
+  height:100%
+}
+.contain>div{
+  height:100%;
+  position: relative;
+}
+
+.ant-layout-content{
+  position: relative;
+  overflow-y: auto;
+}

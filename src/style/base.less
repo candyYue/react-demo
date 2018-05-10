@@ -1,0 +1,156 @@
+@font-family:14px;
+@color-text-placeholder:#999;
+
+
+* {
+  box-sizing: border-box;
+}
+html,body{
+    -webkit-font-smoothing: antialiased;
+    height: 100%;
+
+}
+
+a {
+  background: transparent; 
+  text-decoration: none;
+  &:active {
+    outline: 0; 
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+form,
+blockquote {
+  margin: 0;
+}
+
+ul,
+ol,
+li,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none outside none;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 2;
+  font-weight: normal;
+}
+
+
+textarea {
+  resize: none !important;
+  outline: none;
+  overflow: auto;
+}
+
+input::-ms-clear,
+::-ms-reveal {
+  display: none;
+}
+
+// 表单placeholder样式
+// Firefox 19+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  font-family: @font-family;
+  color: @color-text-placeholder
+}
+// Internet Explorer 10+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  font-family: @font-family;
+  color: @color-text-placeholder
+}
+
+// Safari and Chrome
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  font-family: @font-family;
+  color: @color-text-placeholder
+}
+
+/*滚动条样式*/
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+  background: #c1c1c1;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px #c1c1c1;
+  border-radius: 12px;
+  background: #fafafa;
+}
+::-moz-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-moz-scrollbar-thumb {
+  border-radius: 12px;
+  background: #c1c1c1;
+}
+
+::-moz-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px #c1c1c1;
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+html{
+    scrollbar-arrow-color: #c1c1c1;
+    scrollbar-face-color: #c1c1c1; 
+    scrollbar-highlight-color: #c1c1c1;
+    scrollbar-shadow-color: #c1c1c1;
+    scrollbar-track-color: #fafafa; 
+  }
+
+//  动画
+//淡入
+@keyframes fadeIn {  
+    0% {opacity: 0;}
+    40% {opacity: 0;} 
+    100% {opacity: 1;}  
+}  
+@-webkit-keyframes fadeIn {/*针对webkit内核*/  
+    0% {opacity: 0;}  
+    40% {opacity: 0;}  
+    100% {opacity: 1;}  
+}  
+// 旋转
+@keyframes rotating{
+    form {transform:rotateZ(0deg);}    
+    to    {transform:rotateZ(360deg);}
+}
+@-webkit-keyframes rotating{/* Safari and Chrome */
+    form {transform:rotateZ(0deg);}    
+    to    {transform:rotateZ(360deg);}
+}
+@animation-timing-function:ease-in-out;
+@animation-duration: 0.35s;
+@animationfadein:fadeIn @animation-duration @animation-timing-function;
+// transition
+@transition-timing-function:ease-in-out;
+@transition-duration: 0.35s;
+@transition: all @transition-timing-function @transition-duration;

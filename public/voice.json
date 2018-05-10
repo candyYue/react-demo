@@ -1,0 +1,13 @@
+{
+    "info":"success",
+    "data":[
+        { "start": 0,"end": 4,"text":"文本信息1","cid":0},
+        { "start": 4,"end": 8,"text":"文本信息2","cid":1},
+        { "start": 8,"end": 12,"text":"文本信息3","cid":0},
+        { "start": 12 ,"end": 16,"text":"文本信息4","cid":0},
+        { "start": 16,"end": 20,"text":"文本信息5","cid":1},
+        { "start": 20 ,"end": 24,"text":"文本信息6","cid":1}
+    ],
+    "status":0
+}
+    
