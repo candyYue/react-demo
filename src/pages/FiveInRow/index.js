@@ -25,18 +25,31 @@ class Board extends React.Component{
   }
 
   calcWin(){
-    let num = 0
+    
+    //
     const currentSquare = [...this.state.squares]
-    const currentTarget = this.state.isBlack?'X':'O'
-    for (let index = 0; index < currentSquare.length; index++) {
-      for (let idx = 0; idx < currentSquare[index].length; idx++) {
-        const element = currentSquare[idx];
-        console.log(element)
-        if(element===currentTarget){
+    const currentTarget = this.state.isBlack?'O':'X'
+
+    this.calcX(currentSquare,currentTarget) //横向计算
+
+    var newCurrentSquare = currentSquare[0].map(function(col, i) { //横纵列转换
+      return currentSquare.map(function(row) {
+        return row[i];
+       })
+    });
+    this.calcX(newCurrentSquare, currentTarget)
+
+    
+  }
+  calcX(arr,target){
+    let num = 0
+    for (let index = 0; index < arr.length; index++) {
+      for (let idx = 0; idx < arr[index].length; idx++) {
+        const element = arr[index][idx];
+        if(element===target){
           num++
-          console.log(num)
           if(num>=5){
-            alert('获胜！游戏结束！')
+            console.log('获胜！游戏结束！')
             return false
           }
         }else{
@@ -45,7 +58,6 @@ class Board extends React.Component{
       }
     }
   }
-
   renderSquare(x,y){
     return <Square value={this.state.squares[x][y]} key={y} isBlack={this.state.isBlack} onClick={() => this.handleClick(x,y)}/>
   }
