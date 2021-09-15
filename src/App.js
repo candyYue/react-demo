@@ -1,11 +1,16 @@
-import './assets/css/App.css';
-import './assets/css/reset.css';
-import FiveInRow from "./pages/FiveInRow";
+import './assets/css/reset.less';
+import './assets/css/App.less';
+import './assets/css/common.less';
+// import FiveInRow from "./pages/FiveInRow";
+// import ApiTest from "./pages/ApiTest";
+import  BasicRoute  from "./pages/Router";
 
 function App() {
   return (
     <div className="App">
-      <FiveInRow/>
+      {/* <FiveInRow/> */}
+      {/* <ApiTest/> */}
+      <BasicRoute/>
     </div>
   );
 }
