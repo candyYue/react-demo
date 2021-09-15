@@ -1,17 +1,31 @@
 import React, { useState } from 'react';
 import  SiderBar  from "../../components/SiderBar";
 import { Input, Select ,Table, Button, Space } from 'antd';
-
+import { DeleteOutlined} from '@ant-design/icons';
 import {deepCopy} from "../../utils/helper/assist";
+
+import {getHotVideo} from '@/request/action'
+
 const { Option } = Select;
 
 function ApiTest() {
   // 声明一个新的叫做 “count” 的 state 变量
+  const [requestUrl, setRequestUrl] = useState('http://apis.juhe.cn/juheapi/fapig/douyin/billboard')
   const [paramsList, setParamsList] = useState([
      {
         key: 'id',
         value: '',
+        required:false
+      },
+      {
+        key: 'key',
+        value: '259f32a384e02f36cf4e83d0745993f1',
         required:true
+      },
+      {
+        key: 'type',
+        value: 'hot_video',
+        required:false
       },
       {
         key: 'page',
@@ -21,7 +35,7 @@ function ApiTest() {
       {
         key: 'limit',
         value: '',
-        required:true
+        required:false
       },
   ]);
   const handlerAdd = () => {
@@ -33,7 +47,14 @@ function ApiTest() {
 
     setParamsList(list)
   }
-
+  const handlerRequest = async ()=>{
+    getHotVideo({
+        key:'259f32a384e02f36cf4e83d0745993f1',
+        type:'hot_video'
+      }).then(res=>{
+        console.log(res)
+      })
+  }
   return (
     <>
       <SiderBar></SiderBar>
@@ -46,7 +67,8 @@ function ApiTest() {
                     <Option value="GET">GET</Option>
                     <Option value="POST">POST</Option>
                 </Select>
-                <Input style={{ width: '600px' }} defaultValue="" />
+                <Input style={{ width: '600px' }} defaultValue={requestUrl} />
+                <Button onClick={handlerRequest}> 发送 </Button>
             </Input.Group>
         </div>
         
@@ -54,19 +76,14 @@ function ApiTest() {
             <p>请求参数</p>
             <ul>
                 {  paramsList.map((param,index) => (
-                  <div key={index} className={param.required?'request-required-param':''}>
-                    <span>{param.key} = </span><Input placeholder={param.value} style={{ width: '300px' }} /> <Button size={'small'} onClick={() => handlerDel(index)}> DELETE </Button>
-                  </div>
+                  <li key={index} className={param.required?'request-required-param request-item':'request-item'}>
+                    <span className='request-key'>{param.key}</span>
+                    <Input placeholder={param.value} style={{ width: '300px',marginRight:'10px'}} />
+                    <DeleteOutlined onClick={() => handlerDel(index)}/>
+                  </li>
                 )) }
             </ul>
             {/* <Button size={'small'} onClick={() => handlerAdd()}> ADD </Button> */}
-            {/* <Table dataSource={paramsList} pagination={false}>
-                <Column title="KEY" dataIndex="key" key="key" />
-                <Column title="VALUE" dataIndex="value" key="value" />
-                <Column title="Action" key="action" render={( text, record, index) => (
-                    <Button type="text" size={'small'} onClick={() => handlerDel(text, record, index)}> DELETE </Button>
-                )} />
-            </Table> */}
         </div>
 
         <div className='request-result'>

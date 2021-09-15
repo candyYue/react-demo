@@ -5,7 +5,7 @@ const routeConfig = [
       title:'Navigation One',
       icon: <MailOutlined />,
       MenuItem:[
-        {label: 'Option 1',key:1},
+        {label: '热门视频',key:1, url:'/juheapi/fapig/douyin/billboard'},
         {label: 'Option 2',key:2},
         {label: 'Option 3',key:3},
         {label: 'Option 4',key:4}

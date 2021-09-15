@@ -8,15 +8,12 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
-<<<<<<< Updated upstream
     "antd": "^4.16.13",
     "craco-less": "^1.20.0",
-=======
     "@uiw/react-baidu-map": "^1.18.17",
     "axios": "^0.21.1",
     "echarts": "^4.1.0",
     "electron": "^13.2.2",
->>>>>>> Stashed changes
     "node-sass": "^4.14.1",
     "react": "^17.0.2",
     "react-bmap": "^1.0.130",
@@ -26,18 +23,11 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-<<<<<<< Updated upstream
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
-=======
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron-start": "electron ."
->>>>>>> Stashed changes
   },
   "eslintConfig": {
     "extends": [

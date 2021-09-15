@@ -9,7 +9,8 @@ function SiderBar() {
   let history = useHistory();
 
   
-  const handleClick = (id) => {
+  const handleClick = (url) => {
+    
   };
   return (
     <div className='sider-bar'>
@@ -17,7 +18,7 @@ function SiderBar() {
           {routeConfig.map((route)=>(
             <SubMenu  title={route.title} key={route.key}  icon={route.icon} >
               {route.MenuItem.map((item)=>(
-                <Menu.Item key={item.key}>
+                <Menu.Item key={item.key} onClick={()=>handleClick(item.url)}>
                   <Link to={`/apitest/${item.key}`}>{item.label}</Link>
                 </Menu.Item>
               ))}

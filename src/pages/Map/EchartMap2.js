@@ -325,7 +325,7 @@ function EchartMap(){
                     </div>
                 ):''
             }
-            <div id="mainMap" style={{width:'100vm',height:'600px'}}></div>
+            <div id="mainMap" style={{width:'800px',height:'800px'}}></div>
         </div>
     );
 }
