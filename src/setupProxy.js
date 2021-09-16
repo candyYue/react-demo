@@ -10,7 +10,15 @@ module.exports = function (app) {
             changeOrigin: true,
         }
     ));
-
+    app.use(createProxyMiddleware('/juheapi2',
+        {
+            target: 'http://v.juhe.cn',
+            pathRewrite: {
+                '^/juheapi2': '',
+            },
+            changeOrigin: true,
+        }
+    ));
     app.use(createProxyMiddleware('/qqapi',
         {
             target: 'https://view.inews.qq.com/',

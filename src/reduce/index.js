@@ -4,7 +4,8 @@ export  const initialState = {
         chinaAdd:{confirm:0},
         chinaTotal:{nowConfirm:0}
     },
-    highrisk:{}
+    highrisk:{},
+    currentApi:{}
 };
 
 export const reducer = (state,action)=>{
@@ -23,6 +24,11 @@ export const reducer = (state,action)=>{
             return {
                 ...state,
                 highrisk: action.highrisk
+            }
+        case 'getCurrentApi':
+            return {
+                ...state,
+                currentApi: action.currentApi
             }
         default:
             break;

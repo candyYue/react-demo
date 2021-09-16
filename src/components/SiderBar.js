@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext} from 'react';
+import {context} from '@/App'
+
 import { Link ,useHistory } from "react-router-dom";
 import { Menu } from 'antd';
 import routeConfig from "@/utils/config/apitestconfig";
@@ -6,11 +8,13 @@ const { SubMenu } = Menu;
 const rootSubmenuKeys = ['sub1', 'sub2', 'sub4'];
 
 function SiderBar() {
+
+  const {state,dispatch} = useContext(context)
   let history = useHistory();
 
   
-  const handleClick = (url) => {
-    
+  const handleClick = (item) => {
+    // dispatch({type:'updatechinadata',chinadata:chinadata})
   };
   return (
     <div className='sider-bar'>
@@ -18,7 +22,7 @@ function SiderBar() {
           {routeConfig.map((route)=>(
             <SubMenu  title={route.title} key={route.key}  icon={route.icon} >
               {route.MenuItem.map((item)=>(
-                <Menu.Item key={item.key} onClick={()=>handleClick(item.url)}>
+                <Menu.Item key={item.key} onClick={()=>handleClick(item)}>
                   <Link to={`/apitest/${item.key}`}>{item.label}</Link>
                 </Menu.Item>
               ))}

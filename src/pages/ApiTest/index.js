@@ -3,6 +3,7 @@ import  SiderBar  from "../../components/SiderBar";
 import { Input, Select ,Table, Button, Space } from 'antd';
 import { DeleteOutlined} from '@ant-design/icons';
 import {deepCopy} from "../../utils/helper/assist";
+import apitestconfig from "../../utils/config/apitestconfig";
 
 import {getHotVideo} from '@/request/action'
 
