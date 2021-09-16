@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react';
+import React, { useContext, useEffect} from 'react';
 import {context} from '@/App'
 
 import { Link ,useHistory } from "react-router-dom";
@@ -12,9 +12,11 @@ function SiderBar() {
   const {state,dispatch} = useContext(context)
   let history = useHistory();
 
-  
+  // useEffect(()=>{
+  //   dispatch({type:'getCurrentApi',currentApi:routeConfig[0].MenuItem})
+  // }, [])// eslint-disable-line
   const handleClick = (item) => {
-    // dispatch({type:'updatechinadata',chinadata:chinadata})
+    dispatch({type:'getCurrentApi',currentApi:item})
   };
   return (
     <div className='sider-bar'>

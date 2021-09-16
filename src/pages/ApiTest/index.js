@@ -1,44 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect} from 'react';
+import {context} from '@/App'
 import  SiderBar  from "../../components/SiderBar";
-import { Input, Select ,Table, Button, Space } from 'antd';
+import { Input, Select , Button } from 'antd';
 import { DeleteOutlined} from '@ant-design/icons';
 import {deepCopy} from "../../utils/helper/assist";
-import apitestconfig from "../../utils/config/apitestconfig";
 
-import {getHotVideo} from '@/request/action'
+import * as requestAction from '@/request/action'
 
 const { Option } = Select;
 
 function ApiTest() {
+  const {state} = useContext(context)
   // 声明一个新的叫做 “count” 的 state 变量
-  const [requestUrl, setRequestUrl] = useState('http://apis.juhe.cn/juheapi/fapig/douyin/billboard')
-  const [paramsList, setParamsList] = useState([
-     {
-        key: 'id',
-        value: '',
-        required:false
-      },
-      {
-        key: 'key',
-        value: '259f32a384e02f36cf4e83d0745993f1',
-        required:true
-      },
-      {
-        key: 'type',
-        value: 'hot_video',
-        required:false
-      },
-      {
-        key: 'page',
-        value: '',
-        required:false,
-      },
-      {
-        key: 'limit',
-        value: '',
-        required:false
-      },
-  ]);
+  const [defaultUrl, setDefaultUrl] = useState('');
+  const [paramsList, setParamsList] = useState([]);
+
+  console.log(state)
+  console.log(paramsList)
+  useEffect(()=>{
+    if(state.currentApi&&state.currentApi.defaultparams){
+      setDefaultUrl(state.currentApi.url)
+      setParamsList(state.currentApi.defaultparams)
+    }else{
+      setDefaultUrl('')
+      setParamsList([])
+    }
+  }, [state])// eslint-disable-line
+
+
   const handlerAdd = () => {
   }
 
@@ -49,12 +38,11 @@ function ApiTest() {
     setParamsList(list)
   }
   const handlerRequest = async ()=>{
-    getHotVideo({
-        key:'259f32a384e02f36cf4e83d0745993f1',
-        type:'hot_video'
-      }).then(res=>{
-        console.log(res)
-      })
+    let params = {}
+    state.currentApi.defaultparams.map(v=>params[v.key]= v.value)
+    requestAction[state.currentApi.apiname](params).then(res=>{
+      console.log(res)
+    })
   }
   return (
     <>
@@ -68,7 +56,7 @@ function ApiTest() {
                     <Option value="GET">GET</Option>
                     <Option value="POST">POST</Option>
                 </Select>
-                <Input style={{ width: '600px' }} defaultValue={requestUrl} />
+                <Input style={{ width: '600px' }} value={defaultUrl} />
                 <Button onClick={handlerRequest}> 发送 </Button>
             </Input.Group>
         </div>
@@ -79,7 +67,7 @@ function ApiTest() {
                 {  paramsList.map((param,index) => (
                   <li key={index} className={param.required?'request-required-param request-item':'request-item'}>
                     <span className='request-key'>{param.key}</span>
-                    <Input placeholder={param.value} style={{ width: '300px',marginRight:'10px'}} />
+                    <Input value={param.value} style={{ width: '300px',marginRight:'10px'}} />
                     <DeleteOutlined onClick={() => handlerDel(index)}/>
                   </li>
                 )) }

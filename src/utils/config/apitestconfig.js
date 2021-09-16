@@ -7,6 +7,7 @@ const routeConfig = [
       MenuItem:[
         {
           label: '热门视频',
+          apiname:'getHotVideo',
           key:1, 
           url:'http://apis.juhe.cn/juheapi/fapig/douyin/billboard',
           defaultparams: [
@@ -24,6 +25,7 @@ const routeConfig = [
         },
         {
           label: '驾照题库',
+          apiname:'getDrivingTest',
           key:2,
           url:'http://v.juhe.cn/juheapi2/jztk/query',
           defaultparams: [
