@@ -4,6 +4,7 @@ import  SiderBar  from "../../components/SiderBar";
 import { Input, Select , Button } from 'antd';
 import { DeleteOutlined} from '@ant-design/icons';
 import {deepCopy} from "../../utils/helper/assist";
+import ReactJson from 'react-json-view'
 
 import * as requestAction from '@/request/action'
 
@@ -14,9 +15,7 @@ function ApiTest() {
   // 声明一个新的叫做 “count” 的 state 变量
   const [defaultUrl, setDefaultUrl] = useState('');
   const [paramsList, setParamsList] = useState([]);
-
-  console.log(state)
-  console.log(paramsList)
+  const [jsonData, setJsonData] = useState('');
   useEffect(()=>{
     if(state.currentApi&&state.currentApi.defaultparams){
       setDefaultUrl(state.currentApi.url)
@@ -41,7 +40,7 @@ function ApiTest() {
     let params = {}
     state.currentApi.defaultparams.map(v=>params[v.key]= v.value)
     requestAction[state.currentApi.apiname](params).then(res=>{
-      console.log(res)
+      setJsonData(res)
     })
   }
   return (
@@ -76,7 +75,7 @@ function ApiTest() {
         </div>
 
         <div className='request-result'>
-        result
+          { jsonData? <ReactJson src={jsonData}/> : ''}
         </div>
       </div>
     </>
